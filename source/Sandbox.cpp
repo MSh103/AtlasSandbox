@@ -32,7 +32,10 @@ public:
 	}
 
 	void OnUpdate(Atlas::TimeStep ts) override
-	{}
+	{
+		if (Atlas::Input::IsKeyPressed(Atlas::Keyboard::Key::W))
+			Atlas::Log::Trace("W pressed!");
+	}
 
 	void OnRender() override
 	{
