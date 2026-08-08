@@ -72,3 +72,4 @@ bld/
 *.vcxproj.user
 *.vcxproj.user
 
+*.ini

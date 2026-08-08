@@ -10,14 +10,14 @@ public:
 		: Atlas::Layer("SandboxLayer")
 	{}
 
-	void OnAttach()
+	void OnAttach() override
 	{
 		m_Color.r = 0.3f;
 		m_Color.g = 0.3f;
 		m_Color.b = 0.3f;
 	}
 
-	void OnEvent(Atlas::Event& e)
+	void OnEvent(Atlas::Event& e) override
 	{
 		Atlas::EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<Atlas::WindowResizeEvent>(AT_BIND_EVENT_FN(SandboxLayer::OnResizeEvent));
@@ -31,15 +31,19 @@ public:
 		return false;
 	}
 
-	void OnUpdate(Atlas::TimeStep ts)
+	void OnUpdate(Atlas::TimeStep ts) override
 	{}
 
-	void OnRender()
+	void OnRender() override
 	{
 		glClearColor(m_Color.r, m_Color.g, m_Color.b, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
+	void OnImGuiRender() override
+	{
+		ImGui::ShowDemoWindow();
+	}
 
 private:
 	struct Color
