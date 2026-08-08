@@ -2,6 +2,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] =    "%{wks.location}/AtlasLib/vendor/glfw/include"
 IncludeDir["spdlog"] =  "%{wks.location}/AtlasLib/vendor/spdlog/include"
 IncludeDir["Glad"] =    "%{wks.location}/AtlasLib/vendor/Glad/include"
+IncludeDir["imgui"] =    "%{wks.location}/AtlasLib/vendor/imgui/"
 
 project "AtlasSandbox"
         kind "ConsoleApp"
@@ -22,12 +23,14 @@ project "AtlasSandbox"
                 "%{wks.location}/AtlasLib/source",
                 "%{IncludeDir.spdlog}",
                 "%{IncludeDir.Glad}",
+                "%{IncludeDir.imgui}",
         }
 
         links
         {
                 "AtlasLib",
                 "Glad",
+                "imgui",
         }
 
         filter "system:windows"
