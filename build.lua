@@ -16,6 +16,7 @@ project "AtlasSandbox"
         {
                 "%{IncludeDir.AtlasLib}",
                 "%{IncludeDir.AtlasRenderer}",
+                "%{IncludeDir.glm}",
                 "%{IncludeDir.Glad}",
                 "%{IncludeDir.spdlog}",
                 "%{IncludeDir.imgui}"
