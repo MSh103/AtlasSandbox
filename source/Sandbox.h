@@ -10,6 +10,7 @@ public:
 	{}
 
 	void OnAttach() override;
+	void OnDetach() override;
 	void OnEvent(Atlas::Event& e) override;
 	void OnUpdate(Atlas::TimeStep ts) override;
 	void OnRender() override;
@@ -20,4 +21,8 @@ private:
 	{
 		float r, g, b;
 	} m_Color;
+
+	float* m_Vertices;
+
+	unsigned int m_VBO, m_VAO;
 };
