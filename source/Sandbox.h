@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Atlas.h>
+#include <Atlas/Core/Math.h>
 
 class Sandbox : public Atlas::Layer
 {
@@ -17,10 +18,7 @@ public:
 	void OnImGuiRender() override;
 
 private:
-	struct Color
-	{
-		float r, g, b;
-	} m_Color;
+	glm::vec3 m_Color;
 
 	float* m_Vertices;
 

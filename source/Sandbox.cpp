@@ -47,16 +47,7 @@ void Sandbox::OnRender()
 
 void Sandbox::OnImGuiRender()
 {
-	float col[3] = {
-		m_Color.r,
-		m_Color.g,
-		m_Color.b
-	};
 	ImGui::Begin("Debug");
-	ImGui::ColorEdit3("Clear Screen", col);
+	ImGui::ColorEdit3("Clear Screen", glm::value_ptr(m_Color));
 	ImGui::End();
-
-	m_Color.r = col[0];
-	m_Color.g = col[1];
-	m_Color.b = col[2];
 }
