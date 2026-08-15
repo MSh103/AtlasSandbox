@@ -15,6 +15,7 @@ project "AtlasSandbox"
         includedirs
         {
                 "%{IncludeDir.AtlasLib}",
+                "%{IncludeDir.AtlasRenderer}",
                 "%{IncludeDir.Glad}",
                 "%{IncludeDir.spdlog}",
                 "%{IncludeDir.imgui}"
