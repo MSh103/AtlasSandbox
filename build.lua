@@ -25,6 +25,7 @@ project "AtlasSandbox"
         links
         {
                 "AtlasLib",
+                "AtlasRenderer"
         }
 
         filter "system:windows"
