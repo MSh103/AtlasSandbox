@@ -28,8 +28,6 @@ void Sandbox::OnAttach()
 	});
 	m_VAO->Use();
 	m_VAO->AddVertexBuffer(VBO);
-
-	delete vertices;
 }
 
 void Sandbox::OnDetach()
