@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Atlas.h>
-#include <Atlas/Core/Math.h>
+#include <Atlas/Renderer.h>
 
 class Sandbox : public Atlas::Layer
 {
@@ -20,7 +20,5 @@ public:
 private:
 	glm::vec3 m_Color;
 
-	float* m_Vertices;
-
-	unsigned int m_VBO, m_VAO;
+	std::unique_ptr<Atlas::VertexArray> m_VAO;
 };

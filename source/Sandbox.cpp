@@ -1,31 +1,39 @@
 #include "Sandbox.h"
 
+struct Vertex
+{
+	glm::vec3 pos;
+	glm::vec3 color;
+};
+
 void Sandbox::OnAttach()
 {
 	m_Color.r = 0.3f;
 	m_Color.g = 0.3f;
 	m_Color.b = 0.3f;
 
-	m_Vertices = new float[3*3](
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
-	);
+	Vertex vertices[3] = {
+		{ {-0.5f, 0.5f, 0.f}, {1.f, 0.f, 0.f} },
+		{ {-0.5f,-0.5f, 0.f}, {0.f, 1.f, 0.f} },
+		{ { 0.5f,-0.5f, 0.f}, {0.f, 0.f, 1.f} },
+	};
 
-	glCreateVertexArrays(1, &m_VAO);
-	glBindVertexArray(m_VAO);
+	m_VAO = std::make_unique<Atlas::VertexArray>();
 
-	glGenBuffers(1, &m_VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-	glBufferData(GL_ARRAY_BUFFER, 9*sizeof(float), m_Vertices, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	std::shared_ptr<Atlas::VertexBuffer> VBO = std::make_shared<Atlas::VertexBuffer>(&vertices, sizeof(Vertex) * 3);
+	VBO->Use();
+	VBO->SetLayout({
+		{Atlas::ShaderDataType::Float3, "a_Position"},
+		{Atlas::ShaderDataType::Float3, "a_Color"},
+	});
+	m_VAO->Use();
+	m_VAO->AddVertexBuffer(VBO);
 
+	delete vertices;
 }
 
 void Sandbox::OnDetach()
 {
-	delete[] m_Vertices;
 }
 
 void Sandbox::OnEvent(Atlas::Event& e)
@@ -41,7 +49,7 @@ void Sandbox::OnRender()
 	glClearColor(m_Color.r, m_Color.g, m_Color.b, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glBindVertexArray(m_VAO);
+	m_VAO->Use();
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
