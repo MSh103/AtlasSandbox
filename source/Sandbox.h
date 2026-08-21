@@ -21,4 +21,5 @@ private:
 	glm::vec3 m_Color;
 
 	std::unique_ptr<Atlas::VertexArray> m_VAO;
+	std::shared_ptr<Atlas::Shader> m_Shader;
 };

@@ -25,6 +25,12 @@ void Sandbox::OnAttach()
 	};
 
 	m_VAO = std::make_unique<Atlas::VertexArray>();
+	m_Shader = std::make_shared<Atlas::Shader>();
+
+	//m_Shader->LoadFromFile(Atlas::ShaderType::Vertex, "assets/Vertex.glsl");
+	//m_Shader->LoadFromFile(Atlas::ShaderType::Fragment, "assets/Fragment.glsl");
+	m_Shader->LoadFromFile(Atlas::ShaderType::Basic, "assets/Basic.glsl");
+	m_Shader->LinkObjectsToProgram();
 
 	std::shared_ptr<Atlas::VertexBuffer> VBO = std::make_shared<Atlas::VertexBuffer>(&vertices, sizeof(Vertex) * 4);
 	VBO->Use();
@@ -58,6 +64,7 @@ void Sandbox::OnRender()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	m_VAO->Use();
+	m_Shader->Use();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (const void*)0);
 }
 
